@@ -13,11 +13,13 @@ import iconPorta from '../../images/icon-porta-larga.png';
 import iconRampa from '../../images/icon-rampa.png';
 
 
-const Card = () => {
+const Card = ({item }) => {
+    const imagePath = require('../../images' + item.image)
     return (
         <div className="card__container">
-            <div className="card__image"></div>
-            <img src={item.image} alt={item.name} title={item.name}/>
+            <div className="card__image">
+              <img src={imagePath.default} alt={item.name} title={item.name} />
+            </div>
             <div className="card__content">
                 <h3>{item.name}</h3>
                 <ul className="card__facilities">
