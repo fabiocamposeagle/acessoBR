@@ -8,7 +8,7 @@ import { LocationContext } from '../../contexts/LocationContext'
 
 const PLACES = [
     'Mercados',
-    'Museu',
+    'Museus',
     'Parques',
     'Todos'
 ]
@@ -26,6 +26,7 @@ const Home = () => {
         if (item === 'Todos'){
             setFilteredPlace('')
         }
+
     }
 
     useEffect(() => {

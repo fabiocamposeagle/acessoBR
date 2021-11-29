@@ -1,9 +1,10 @@
-import React from 'react';
-import './button.scss';
-import PropTypes from 'prop-types';
-function Button({ children, onClick, width }) {
+import React from 'react'
+import './button.scss'
+import PropTypes from 'prop-types'
+
+function Button({ children, onClick, width }){
     return (
-        <button className="button" onClick={onClick} style={{ width }}>
+        <button className="button" onClick={onClick} style={{width}}>
             {children}
         </button>
     )
@@ -18,4 +19,4 @@ Button.propTypes = {
     width: PropTypes.number.isRequired
 }
 
-export default Button;
+export default Button

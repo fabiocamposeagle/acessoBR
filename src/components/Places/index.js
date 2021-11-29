@@ -1,29 +1,56 @@
-import React, { useContext } from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { FilterContext } from '../../contexts/FilterContext'
-import Slider from '../Slider'
-import './places.scss'
+import SwiperCore, {Pagination} from 'swiper'
+import { Swiper, SwiperSlide} from 'swiper/react'
+import Card from '../Card'
+import api from '../../config/api'
 
-const Places = () => {
-    const { filteredPlace, setFilteredPlace} = useContext(FilterContext)
+
+import 'swiper/swiper-bundle.css'
+
+SwiperCore.use([Pagination])
+
+function Slider() {
+    const { filteredPlace, setFilteredPlace } = useContext(FilterContext)
+    const [places, setPlaces] = useState([])
+
+    useEffect(() => {
+        const fetchPlaces = async () => {
+            const result = await api.get(`?category_like=${filteredPlace ? filteredPlace : ''}`)
+
+            console.log(result)
+
+            if (result.status === 200) {
+                setPlaces(result.data.places)
+            }
+        }
+
+        fetchPlaces()
+    }, [filteredPlace])
+
     return(
-        <section className="places">
-            <div className="places__header">
-                <h2 className="places__title">
-                    { filteredPlace ? filteredPlace + ' ' : 'Locais ' } 
-                     <span>Acessíveis</span></h2>
-                <div className="places__select">
-                    <h5>Ordernar por:</h5>
-                    <select>
-                        <option>distância</option>
-                        <option>alfabeto</option>
-                    </select>
-                </div>
-            </div>
-            <div className="places__content">
-                <Slider />
-            </div>
-        </section>
+        <Swiper
+            breakpoints={{
+                300: {
+                    slidesPerView: 1
+                },
+                767: {
+                    slidesPerView: 2 
+                },
+                1024: {
+                    slidesPerView: 4 
+                }
+            }}
+        >
+            {
+                places.map(item => (
+                    <SwiperSlide key={item.id} >
+                        <Card key={item.id} item={item} />
+                    </SwiperSlide>
+                 ))
+            }
+        </Swiper>
     )
 }
 
-export default Places;
+export default Slider

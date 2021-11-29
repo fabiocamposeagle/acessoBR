@@ -1,4 +1,4 @@
-import { BrowserRouter as Router,Routes as Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes as Switch, Route } from 'react-router-dom'
 import Home from '../pages/Home'
 import { LocationContext } from '../contexts/LocationContext'
 import { Fragment, useState } from 'react'
@@ -18,7 +18,7 @@ const Routes = props => {
         <Header />
         <Switch>
           <Route
-            path="/:state/:city"element={
+            path="/:state/:city" element={
               <Fragment>
                     <Home />
                     <Places />

@@ -9,7 +9,7 @@ ReactDOM.render(
   <div className="main__wrapper">
     <div className="main__container">
       <BrowserRouter>
-      <Routes  />
+         <Routes />
       </BrowserRouter>
     </div>
     <Footer />
